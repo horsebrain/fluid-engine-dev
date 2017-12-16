@@ -38,7 +38,7 @@ def main():
                 line = "#include <jet/%s>\n" % os.path.basename(filename)
                 header_file.write(line)
         header_file.write("#endif  // INCLUDE_JET_JET_H_\n")
-    if not filecmp.cmp(header, header_tmp):
+    if not os.path.exists(header) or not filecmp.cmp(header, header_tmp):
         shutil.move(header_tmp, header)
     else:
         os.remove(header_tmp)
